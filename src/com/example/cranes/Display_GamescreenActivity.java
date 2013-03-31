@@ -11,13 +11,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 public class Display_GamescreenActivity extends Activity {
 	private int[][] valveValues;
@@ -31,6 +30,7 @@ public class Display_GamescreenActivity extends Activity {
 		setContentView(R.layout.activity_main_gamescreen);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		this.setTitle("ValvE");
 		
 		Random rand = new Random();
 		//int r = rand.nextInt(2);
@@ -59,13 +59,19 @@ public class Display_GamescreenActivity extends Activity {
 		valveOpened = Uri.parse("android.resource://com.example.cranes/drawable/valve_opened");
 		valveClosed = Uri.parse("android.resource://com.example.cranes/drawable/valve_closed");
 		
-		ViewGroup layout = (ViewGroup) findViewById(R.id.gameLayout);
+		//ViewGroup layout = (ViewGroup) findViewById(R.id.gameLayout);
+		TableLayout table = (TableLayout) findViewById(R.id.gameLayout);
+	    //TableLayout table = new TableLayout(this);
 		
-	    TableLayout table = new TableLayout(this);
+
+		TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+		params.gravity = Gravity.CENTER;
+		
 		for (int i=0; i<size;i++)
 			
 		{
 			TableRow row = new TableRow(this);
+			row.setLayoutParams(params);
 			for (int j=0; j<size;j++)
 				{
 		        valveValues[i][j] = rand.nextInt(2);
@@ -93,7 +99,7 @@ public class Display_GamescreenActivity extends Activity {
 			}
 			table.addView(row);
 		}
-		layout.addView(table);
+		//layout.addView(table);
 	}
 	private int invert(int Value)
 	{
