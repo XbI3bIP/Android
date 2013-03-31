@@ -1,0 +1,74 @@
+package com.example.cranes;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class Cranes extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cranes);
+        
+        final Button button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	AlertDialog.Builder popupBuilder = new AlertDialog.Builder(this);
+    			TextView myMsg = new TextView(this);
+    			//myMsg.setText("You Win!");
+    			//myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
+    			//myMsg.setTextColor(Color.parseColor("#FFFFFF"));
+    			popupBuilder.setTitle("Credits");
+    			popupBuilder.setMessage("trulala\nololo");
+    			popupBuilder.setPositiveButton("OK",
+    					new DialogInterface.OnClickListener() {
+    				public void onClick(DialogInterface dialog,
+    						int id) {
+    					dialog.cancel();
+    					exitGame();
+
+            }
+        });
+        
+        final Button button = (Button) findViewById(R.id.button3);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	onFinishButtonClick(v);
+
+            }
+        });
+        
+    	
+    final Button button1 = (Button) findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	onStartNew(v);
+            }
+        }); 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.cranes, menu);
+        return true;
+    }
+    
+    public void onFinishButtonClick(View view) {
+    	this.finish();
+    }
+  
+    public void onStartNew(View view) {
+    	Intent i = new Intent(getApplicationContext(), Display_GamescreenActivity.class);
+    	startActivity(i);
+    }
+  
+}
